@@ -6,10 +6,11 @@ workflows:
     environment:
       flutter: stable
     scripts:
-      - name: Bootstrap project (first run only)
+      - name: Bootstrap project from zip
         script: |
-          if [ -f setup_conceptalive.sh ]; then
-            bash setup_conceptalive.sh
+          if [ -f conceptalive_flutter_app.zip ]; then
+            unzip -o conceptalive_flutter_app.zip -d /tmp/extracted
+            cp -rf /tmp/extracted/conceptalive/. .
           fi
       - name: Scaffold native platform folders
         script: |

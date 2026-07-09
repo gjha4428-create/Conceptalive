@@ -1,0 +1,34 @@
+workflows:
+  android-workflow:
+    name: ConceptAlive - Android
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+    scripts:
+      - name: Bootstrap project (first run only)
+        script: |
+          if [ -f setup_conceptalive.sh ]; then
+            bash setup_conceptalive.sh
+          fi
+      - name: Scaffold native platform folders
+        script: |
+          if [ ! -d android ]; then
+            flutter create . --org com.yourname --project-name conceptalive
+          fi
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Analyze
+        script: flutter analyze || true
+      - name: Build APK (release)
+        script: flutter build apk --release
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com   # <-- change this
+        notify:
+          success: true
+          failure: true

@@ -4,7 +4,7 @@ import '../../constants/app_strings.dart';
 import '../../routes/app_routes.dart';
 
 class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({Key? key}) : super(key: key);
+  const ErrorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

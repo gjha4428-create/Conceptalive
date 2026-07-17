@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   void _navigateToHome() {
     Future.delayed(
-      Duration(milliseconds: AppConstants.splashDelay),
+      const Duration(milliseconds: AppConstants.splashDelay),
       () {
         if (mounted) {
           context.go(AppRoutes.home);

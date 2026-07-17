@@ -9,12 +9,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LoggerUtil.initialize();
   LoggerUtil.info('App started');
-  
+
   runApp(const ConceptAliveApp());
 }
 
 class ConceptAliveApp extends StatelessWidget {
-  const ConceptAliveApp({Key? key}) : super(key: key);
+  const ConceptAliveApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ConceptAliveApp extends StatelessWidget {
             builder: (context, child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                  textScaleFactor: 1.0,
+                  textScaler: const TextScaler.linear(1.0),
                 ),
                 child: child ?? const SizedBox.shrink(),
               );

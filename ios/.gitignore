@@ -1,0 +1,20 @@
+# Miscellaneous
+.DS_Store
+.AppleDouble
+.LSOverride
+*.lock
+
+# Generated files
+Flutter/Flutter.framework/
+Flutter/Flutter.podspec
+Flutter/Generated.xcconfig
+Flutter/ephemeral/
+Flutter/flutter_export_environment.sh
+Flutter/flutter_model_provider.g.dart
+
+# Exceptions to above rules.
+!/Flutter/Flutter.framework/
+!/Flutter/Flutter.podspec
+!/Flutter/Generated.xcconfig
+!/Flutter/ephemeral/
+!/Flutter/flutter_export_environment.sh

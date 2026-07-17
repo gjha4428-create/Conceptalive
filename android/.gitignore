@@ -1,0 +1,17 @@
+# Miscellaneous
+.classpath
+.gradle
+.history
+.svn/
+local.properties
+
+# The gradle files for this project should not be checked in.
+# https://docs.gradle.org/current/userguide/gradle_daemon.html#sec:daemon_registry
+.gradle/
+
+# SIGNING PROPERTIES
+!gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.jar
+
+# lint
+lint-baseline.xml

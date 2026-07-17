@@ -23,7 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         },
       ),
       body: SingleChildScrollView(
-        child: Column(
+        child: const Column(
           children: [
             _buildThemeSection(context),
             _buildDivider(),

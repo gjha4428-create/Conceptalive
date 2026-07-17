@@ -1,0 +1,17 @@
+{
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.rulers": [80, 120],
+    "editor.selectionHighlight": true,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "dart.lineLength": 80,
+  "dart.previewFlutterUiGuides": true,
+  "search.exclude": {
+    "**/*.g.dart": true,
+    "**/*.config.dart": true
+  }
+}

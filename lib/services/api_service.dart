@@ -21,7 +21,7 @@ class APIService {
       LoggerUtil.debug('GET request: $endpoint');
       final uri = Uri.parse('${AppConstants.apiBaseUrl}$endpoint');
       final response = await _client.get(uri).timeout(
-        Duration(seconds: AppConstants.apiTimeout),
+        const Duration(seconds: AppConstants.apiTimeout),
         onTimeout: () => throw TimeoutException('Request timeout'),
       );
 
@@ -32,18 +32,21 @@ class APIService {
     }
   }
 
-  Future<Map<String, dynamic>> post(String endpoint, {required Map<String, dynamic> body}) async {
+  Future<Map<String, dynamic>> post(String endpoint,
+      {required Map<String, dynamic> body}) async {
     try {
       LoggerUtil.debug('POST request: $endpoint');
       final uri = Uri.parse('${AppConstants.apiBaseUrl}$endpoint');
-      final response = await _client.post(
-        uri,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(body),
-      ).timeout(
-        Duration(seconds: AppConstants.apiTimeout),
-        onTimeout: () => throw TimeoutException('Request timeout'),
-      );
+      final response = await _client
+          .post(
+            uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(body),
+          )
+          .timeout(
+            const Duration(seconds: AppConstants.apiTimeout),
+            onTimeout: () => throw TimeoutException('Request timeout'),
+          );
 
       return _handleResponse(response);
     } catch (e) {
@@ -52,18 +55,21 @@ class APIService {
     }
   }
 
-  Future<Map<String, dynamic>> put(String endpoint, {required Map<String, dynamic> body}) async {
+  Future<Map<String, dynamic>> put(String endpoint,
+      {required Map<String, dynamic> body}) async {
     try {
       LoggerUtil.debug('PUT request: $endpoint');
       final uri = Uri.parse('${AppConstants.apiBaseUrl}$endpoint');
-      final response = await _client.put(
-        uri,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(body),
-      ).timeout(
-        Duration(seconds: AppConstants.apiTimeout),
-        onTimeout: () => throw TimeoutException('Request timeout'),
-      );
+      final response = await _client
+          .put(
+            uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(body),
+          )
+          .timeout(
+            const Duration(seconds: AppConstants.apiTimeout),
+            onTimeout: () => throw TimeoutException('Request timeout'),
+          );
 
       return _handleResponse(response);
     } catch (e) {
@@ -77,9 +83,9 @@ class APIService {
       LoggerUtil.debug('DELETE request: $endpoint');
       final uri = Uri.parse('${AppConstants.apiBaseUrl}$endpoint');
       final response = await _client.delete(uri).timeout(
-        Duration(seconds: AppConstants.apiTimeout),
-        onTimeout: () => throw TimeoutException('Request timeout'),
-      );
+            const Duration(seconds: AppConstants.apiTimeout),
+            onTimeout: () => throw TimeoutException('Request timeout'),
+          );
 
       return _handleResponse(response);
     } catch (e) {
@@ -108,6 +114,7 @@ class APIService {
 class APIException implements Exception {
   final String message;
   APIException(this.message);
+
   @override
   String toString() => 'APIException: $message';
 }
@@ -115,6 +122,7 @@ class APIException implements Exception {
 class TimeoutException implements Exception {
   final String message;
   TimeoutException(this.message);
+
   @override
   String toString() => 'TimeoutException: $message';
 }
@@ -122,6 +130,7 @@ class TimeoutException implements Exception {
 class UnauthorizedException implements Exception {
   final String message;
   UnauthorizedException(this.message);
+
   @override
   String toString() => 'UnauthorizedException: $message';
 }
@@ -129,6 +138,7 @@ class UnauthorizedException implements Exception {
 class ForbiddenException implements Exception {
   final String message;
   ForbiddenException(this.message);
+
   @override
   String toString() => 'ForbiddenException: $message';
 }
@@ -136,6 +146,7 @@ class ForbiddenException implements Exception {
 class NotFoundException implements Exception {
   final String message;
   NotFoundException(this.message);
+
   @override
   String toString() => 'NotFoundException: $message';
 }
@@ -143,6 +154,7 @@ class NotFoundException implements Exception {
 class ServerException implements Exception {
   final String message;
   ServerException(this.message);
+
   @override
   String toString() => 'ServerException: $message';
 }

@@ -35,54 +35,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildThemeSection(BuildContext context) {
-  return Consumer<ThemeProvider>(
-    builder: (context, themeProvider, _) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              AppStrings.themeTitle,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, _) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                AppStrings.themeTitle,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
             ),
-          ),
-          RadioGroup<ThemeMode>(
-            groupValue: themeProvider.themeMode,
-            onChanged: (ThemeMode? value) {
-              if (value != null) {
-                themeProvider.setThemeMode(value);
-              }
-            },
-            child: Column(
-              children: [
-                ListTile(
-                  title: const Text(AppStrings.themeLightMode),
-                  leading: const Radio<ThemeMode>(
-                    value: ThemeMode.light,
+            RadioGroup<ThemeMode>(
+              groupValue: themeProvider.themeMode,
+              onChanged: (ThemeMode? value) {
+                if (value != null) {
+                  themeProvider.setThemeMode(value);
+                }
+              },
+              child: Column(
+                children: const [
+                  ListTile(
+                    title: Text(AppStrings.themeLightMode),
+                    leading: Radio<ThemeMode>(
+                      value: ThemeMode.light,
+                    ),
                   ),
-                ),
-                ListTile(
-                  title: const Text(AppStrings.themeDarkMode),
-                  leading: const Radio<ThemeMode>(
-                    value: ThemeMode.dark,
+                  ListTile(
+                    title: Text(AppStrings.themeDarkMode),
+                    leading: Radio<ThemeMode>(
+                      value: ThemeMode.dark,
+                    ),
                   ),
-                ),
-                ListTile(
-                  title: const Text(AppStrings.themeSystemMode),
-                  leading: const Radio<ThemeMode>(
-                    value: ThemeMode.system,
+                  ListTile(
+                    title: Text(AppStrings.themeSystemMode),
+                    leading: Radio<ThemeMode>(
+                      value: ThemeMode.system,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      );
-    },
-  );
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildAboutSection(BuildContext context) {
@@ -98,10 +98,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
           ),
         ),
-        ListTile(
-          title: const Text(AppStrings.versionTitle),
-          subtitle: const Text('1.0.0'),
-          leading: const Icon(Icons.info_outline),
+        const ListTile(
+          title: Text(AppStrings.versionTitle),
+          subtitle: Text('1.0.0'),
+          leading: Icon(Icons.info_outline),
         ),
         ListTile(
           title: const Text(AppStrings.privacyTitle),

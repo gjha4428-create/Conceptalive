@@ -203,7 +203,7 @@ class AppTheme {
       bodySmall: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
-        color: isDark ? AppColors.lightGrey.withOpacity(0.7) : AppColors.darkGrey.withOpacity(0.7),
+        color: isDark ? AppColors.lightGrey.withOpacity(alpha:0.7) : AppColors.darkGrey.withOpacity(alpha:0.7),
       ),
       labelLarge: TextStyle(
         fontSize: 14,

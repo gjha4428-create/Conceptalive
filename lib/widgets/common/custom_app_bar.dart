@@ -9,14 +9,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double elevation;
 
   const CustomAppBar({
-    Key? key,
-    required this.title,
-    this.onBackPressed,
-    this.actions,
-    this.showBackButton = true,
-    this.backgroundColor,
-    this.elevation = 0,
-  }) : super(key: key);
+  super.key,
+  required this.title,
+  this.onBackPressed,
+  this.actions,
+  this.showBackButton = true,
+  this.backgroundColor,
+  this.elevation = 0,
+});
 
   @override
   Widget build(BuildContext context) {

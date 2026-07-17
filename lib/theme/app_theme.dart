@@ -49,7 +49,7 @@ class AppTheme {
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         ),
       ),
-      chipTheme: ChipThemeData(
+      chipTheme: const ChipThemeData(
         backgroundColor: AppColors.lightSurface,
         disabledColor: AppColors.lightGrey,
         selectedColor: AppColors.primaryLight,
@@ -119,7 +119,7 @@ class AppTheme {
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         ),
       ),
-      chipTheme: ChipThemeData(
+      chipTheme: const ChipThemeData(
         backgroundColor: AppColors.darkSurface,
         disabledColor: AppColors.darkGrey,
         selectedColor: AppColors.primaryDark,

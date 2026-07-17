@@ -85,8 +85,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   );
   }
 
-Widget _buildAboutSection(BuildContext context) {
-  Widget _buildAboutSection(BuildContext context) {
   Widget _buildAboutSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

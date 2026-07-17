@@ -54,12 +54,12 @@ class AppTheme {
         disabledColor: AppColors.lightGrey,
         selectedColor: AppColors.primaryLight,
         secondarySelectedColor: AppColors.primaryLight,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        labelStyle: const TextStyle(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        labelStyle: TextStyle(
           color: AppColors.darkGrey,
           fontSize: 14,
         ),
-        secondaryLabelStyle: const TextStyle(
+        secondaryLabelStyle: TextStyle(
           color: Colors.white,
           fontSize: 14,
         ),
@@ -124,12 +124,12 @@ class AppTheme {
         disabledColor: AppColors.darkGrey,
         selectedColor: AppColors.primaryDark,
         secondarySelectedColor: AppColors.primaryDark,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        labelStyle: const TextStyle(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        labelStyle: TextStyle(
           color: AppColors.lightGrey,
           fontSize: 14,
         ),
-        secondaryLabelStyle: const TextStyle(
+        secondaryLabelStyle: TextStyle(
           color: Colors.white,
           fontSize: 14,
         ),

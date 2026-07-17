@@ -56,8 +56,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   themeProvider.setThemeMode(value);
                 }
               },
-              child: Column(
-                children: const [
+              child: const Column(
+                children: [
                   ListTile(
                     title: Text(AppStrings.themeLightMode),
                     leading: Radio<ThemeMode>(

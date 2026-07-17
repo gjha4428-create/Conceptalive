@@ -49,37 +49,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
               ),
             ),
-            RadioGroup<ThemeMode>(
-  groupValue: themeProvider.themeMode,
-  onChanged: (ThemeMode? value) {
-    if (value != null) {
-      themeProvider.setThemeMode(value);
-    }
-  },
-  child: Column(
-    children: [
-      ListTile(
-        title: const Text(AppStrings.themeLightMode),
-        leading: const Radio<ThemeMode>(
-          value: ThemeMode.light,
-        ),
-      ),
-      ListTile(
-        title: const Text(AppStrings.themeDarkMode),
-        leading: const Radio<ThemeMode>(
-          value: ThemeMode.dark,
-        ),
-      ),
-      ListTile(
-        title: const Text(AppStrings.themeSystemMode),
-        leading: const Radio<ThemeMode>(
-          value: ThemeMode.system,
-        ),
-      ),
-    ],
-  ),
-),
+                        RadioGroup<ThemeMode>(
+              groupValue: themeProvider.themeMode,
+              onChanged: (ThemeMode? value) {
+                if (value != null) {
+                  themeProvider.setThemeMode(value);
+                }
+              },
+              child: Column(
+                children: [
+                  ListTile(
+                    title: const Text(AppStrings.themeLightMode),
+                    leading: const Radio<ThemeMode>(
+                      value: ThemeMode.light,
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text(AppStrings.themeDarkMode),
+                    leading: const Radio<ThemeMode>(
+                      value: ThemeMode.dark,
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text(AppStrings.themeSystemMode),
+                    leading: const Radio<ThemeMode>(
+                      value: ThemeMode.system,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
+  Widget _buildAboutSection(BuildContext context) {
   Widget _buildAboutSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

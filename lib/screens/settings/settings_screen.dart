@@ -6,7 +6,7 @@ import '../../providers/theme_provider.dart';
 import '../../widgets/common/custom_app_bar.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -45,8 +45,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Text(
                 AppStrings.themeTitle,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ),
             ListTile(
@@ -100,8 +100,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Text(
             AppStrings.aboutTitle,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
         ListTile(
@@ -138,8 +138,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildDivider() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 8),
       child: Divider(
         height: 1,
         indent: 16,

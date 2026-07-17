@@ -1,35 +1,214 @@
 workflows:
-  android-workflow:
-    name: ConceptAlive - Android
-    max_build_duration: 30
+  android-release:
+    name: ConceptAlive - Android Release
+    max_build_duration: 60
     instance_type: mac_mini_m2
     environment:
       flutter: stable
+      xcode: latest
+      android_signing:
+        - conceptalive_release_keystore
+      groups:
+        - keystore_credentials
     scripts:
-      - name: Bootstrap project from zip
-        script: |
-          if [ -f conceptalive_flutter_app.zip ]; then
-            unzip -o conceptalive_flutter_app.zip -d /tmp/extracted
-            cp -rf /tmp/extracted/conceptalive/. .
-          fi
-      - name: Scaffold native platform folders
-        script: |
-          if [ ! -d android ]; then
-            flutter create . --org com.yourname --project-name conceptalive
-          fi
       - name: Get Flutter packages
         script: flutter pub get
-      - name: Analyze
-        script: flutter analyze || true
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests
+        script: flutter test || true
       - name: Build APK (release)
         script: flutter build apk --release
+      - name: Build App Bundle (release)
+        script: flutter build appbundle --release
     artifacts:
-      - build/**/outputs/**/*.apk
-      - build/**/outputs/**/*.aab
+      - build/app/outputs/**/*.apk
+      - build/app/outputs/**/*.aab
+      - flutter_drive.log
     publishing:
       email:
         recipients:
-          - your-email@example.com   # <-- change this
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+      slack:
+        channel: '#flutter-builds'
+        notify_on_build_start: true
+        notify:
+          success: true
+          failure: true
+
+  ios-release:
+    name: ConceptAlive - iOS Release
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      xcode: latest
+      ios_signing:
+        provisioning_profiles:
+          - conceptalive_release_profile
+        certificates:
+          - conceptalive_release_certificate
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests
+        script: flutter test || true
+      - name: Build iOS App (release)
+        script: flutter build ios --release --no-codesign
+      - name: Build iOS App (codesigning)
+        script: |
+          cd ios
+          pod install
+          cd ..
+          xcodebuild -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -derivedDataPath build/ios_build \
+            -arch arm64 \
+            build
+    artifacts:
+      - build/ios_build/**/*.app
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  web-build:
+    name: ConceptAlive - Web Release
+    max_build_duration: 30
+    instance_type: linux
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests
+        script: flutter test || true
+      - name: Build Web (release)
+        script: flutter build web --release
+    artifacts:
+      - build/web/**
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  windows-build:
+    name: ConceptAlive - Windows Release
+    max_build_duration: 60
+    instance_type: windows
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests
+        script: flutter test
+      - name: Build Windows (release)
+        script: flutter build windows --release
+    artifacts:
+      - build/windows/runner/Release/**
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  linux-build:
+    name: ConceptAlive - Linux Release
+    max_build_duration: 60
+    instance_type: linux
+    environment:
+      flutter: stable
+    scripts:
+      - name: Install dependencies
+        script: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libx11-dev pkg-config cmake ninja-build libblkid-dev
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests
+        script: flutter test || true
+      - name: Build Linux (release)
+        script: flutter build linux --release
+    artifacts:
+      - build/linux/x64/release/bundle/**
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  macos-build:
+    name: ConceptAlive - macOS Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests
+        script: flutter test || true
+      - name: Build macOS (release)
+        script: flutter build macos --release
+    artifacts:
+      - build/macos/Build/Products/Release/**
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  analyze-and-test:
+    name: ConceptAlive - Code Analysis & Tests
+    max_build_duration: 30
+    instance_type: linux
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Run code analysis
+        script: flutter analyze
+      - name: Run tests with coverage
+        script: |
+          flutter test --coverage
+      - name: Check code formatting
+        script: flutter format --set-exit-if-changed lib/ test/
+    artifacts:
+      - coverage/lcov.info
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
         notify:
           success: true
           failure: true

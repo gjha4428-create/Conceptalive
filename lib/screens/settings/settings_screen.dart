@@ -74,17 +74,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     title: const Text(AppStrings.themeSystemMode),
                     leading: const Radio<ThemeMode>(
                       value: ThemeMode.system,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+                              ),
+                           ],
+                        );
+                     },
+                 );
+              }
 
+Widget _buildAboutSection(BuildContext context) {
   Widget _buildAboutSection(BuildContext context) {
   Widget _buildAboutSection(BuildContext context) {
     return Column(

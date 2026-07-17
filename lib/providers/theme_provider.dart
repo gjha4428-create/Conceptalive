@@ -52,7 +52,6 @@ class ThemeProvider extends ChangeNotifier {
   bool get isDarkMode {
     if (_themeMode == ThemeMode.dark) return true;
     if (_themeMode == ThemeMode.light) return false;
-    // System mode - check platform brightness
     return View.of(WidgetsBinding.instance.rootElement!).platformDispatcher.platformBrightness == Brightness.dark;
   }
 }

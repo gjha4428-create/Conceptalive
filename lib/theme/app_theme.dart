@@ -256,7 +256,7 @@ class AppTheme {
         borderSide: const BorderSide(color: AppColors.errorRed, width: 2),
       ),
       hintStyle: TextStyle(
-        color: textColor.withOpacity(alpha: 0.5),
+        color: textColor.withvalues(alpha: 0.5),
         fontSize: 14,
       ),
       labelStyle: TextStyle(

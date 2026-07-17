@@ -5,8 +5,10 @@ class ThemeProvider extends ChangeNotifier {
   static const String _themeKey = 'app_theme_mode';
   late ThemeMode _themeMode;
   late SharedPreferences _prefs;
+  bool _isInitialized = false;
 
   ThemeMode get themeMode => _themeMode;
+  bool get isInitialized => _isInitialized;
 
   ThemeProvider() {
     _themeMode = ThemeMode.system;
@@ -19,15 +21,19 @@ class ThemeProvider extends ChangeNotifier {
       final savedTheme = _prefs.getString(_themeKey);
       if (savedTheme != null) {
         _themeMode = ThemeMode.values.byName(savedTheme);
+      } else {
+        _themeMode = ThemeMode.system;
       }
     } catch (e) {
       debugPrint('Error initializing theme: $e');
       _themeMode = ThemeMode.system;
     }
+    _isInitialized = true;
     notifyListeners();
   }
 
   Future<void> setThemeMode(ThemeMode mode) async {
+    if (_themeMode == mode) return;
     _themeMode = mode;
     try {
       _prefs = await SharedPreferences.getInstance();
@@ -44,11 +50,9 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   bool get isDarkMode {
-    return _themeMode == ThemeMode.dark ||
-        (_themeMode == ThemeMode.system && _isSystemDarkMode);
-  }
-
-  bool get _isSystemDarkMode {
-    return WidgetsBinding.instance.window.platformDispatcher.views.first.platformDispatcher.views.isNotEmpty;
+    if (_themeMode == ThemeMode.dark) return true;
+    if (_themeMode == ThemeMode.light) return false;
+    // System mode - check platform brightness
+    return View.of(WidgetsBinding.instance.rootElement!).platformDispatcher.platformBrightness == Brightness.dark;
   }
 }

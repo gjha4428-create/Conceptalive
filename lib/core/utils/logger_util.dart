@@ -1,31 +1,33 @@
-import 'package:logger/logger.dart';
+import 'package:flutter/material.dart';
 
 class LoggerUtil {
-  static late Logger _logger;
+  static bool _initialized = false;
 
   static void initialize() {
-    _logger = Logger(
-      printer: PrettyPrinter(
-        colors: true,
-        printEmojis: true,
-        methodCount: 2,
-      ),
-    );
+    if (_initialized) return;
+    _initialized = true;
+    debugPrint('🔧 Logger initialized');
   }
 
   static void debug(String message) {
-    _logger.d(message);
+    debugPrint('🐛 DEBUG: $message');
   }
 
   static void info(String message) {
-    _logger.i(message);
+    debugPrint('ℹ️ INFO: $message');
   }
 
   static void warning(String message) {
-    _logger.w(message);
+    debugPrint('⚠️ WARNING: $message');
   }
 
   static void error(String message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.e(message, error: error, stackTrace: stackTrace);
+    debugPrint('❌ ERROR: $message');
+    if (error != null) {
+      debugPrint('Error: $error');
+    }
+    if (stackTrace != null) {
+      debugPrint('StackTrace: $stackTrace');
+    }
   }
 }

@@ -10,7 +10,7 @@ class AppTheme {
         seedColor: AppColors.primaryLight,
         brightness: Brightness.light,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.white,
@@ -27,8 +27,8 @@ class AppTheme {
           backgroundColor: AppColors.primaryLight,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           elevation: 2,
         ),
@@ -38,8 +38,8 @@ class AppTheme {
           foregroundColor: AppColors.primaryLight,
           side: const BorderSide(color: AppColors.primaryLight),
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
         ),
       ),
@@ -80,7 +80,7 @@ class AppTheme {
         seedColor: AppColors.primaryDark,
         brightness: Brightness.dark,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         centerTitle: true,
         elevation: 0,
         backgroundColor: AppColors.darkBackground,
@@ -97,8 +97,8 @@ class AppTheme {
           backgroundColor: AppColors.primaryDark,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           elevation: 2,
         ),
@@ -108,8 +108,8 @@ class AppTheme {
           foregroundColor: AppColors.primaryDark,
           side: const BorderSide(color: AppColors.primaryDark),
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
         ),
       ),
@@ -144,6 +144,7 @@ class AppTheme {
 
   static TextTheme _buildTextTheme({required bool isDark}) {
     final textColor = isDark ? AppColors.lightGrey : AppColors.darkGrey;
+
     return TextTheme(
       displayLarge: TextStyle(
         fontSize: 32,
@@ -175,55 +176,12 @@ class AppTheme {
         fontWeight: FontWeight.w600,
         color: textColor,
       ),
-      titleLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: textColor,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: textColor,
-      ),
-      titleSmall: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: textColor,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: textColor,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: textColor,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: isDark ? AppColors.lightGrey.withValues(alpha: 0.7) : AppColors.darkGrey.withValues(alpha: 0.7),
-      ),
-      labelLarge: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: textColor,
-      ),
-      labelMedium: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: textColor,
-      ),
-      labelSmall: TextStyle(
-        fontSize: 10,
-        fontWeight: FontWeight.w500,
-        color: textColor,
-      ),
     );
   }
 
-  static InputDecorationTheme _buildInputDecorationTheme({required bool isDark}) {
+  static InputDecorationTheme _buildInputDecorationTheme({
+    required bool isDark,
+  }) {
     final borderColor = isDark ? AppColors.darkGrey : AppColors.lightGrey;
     final fillColor = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final textColor = isDark ? AppColors.lightGrey : AppColors.darkGrey;
@@ -231,7 +189,10 @@ class AppTheme {
     return InputDecorationTheme(
       filled: true,
       fillColor: fillColor,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 12,
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: borderColor),
@@ -240,32 +201,17 @@ class AppTheme {
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: borderColor),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(
-          color: isDark ? AppColors.primaryDark : AppColors.primaryLight,
-          width: 2,
-        ),
-      ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(color: AppColors.errorRed),
       ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.errorRed, width: 2),
+      errorStyle: const TextStyle(
+        color: AppColors.errorRed,
+        fontSize: 12,
       ),
       hintStyle: TextStyle(
         color: textColor.withValues(alpha: 0.5),
         fontSize: 14,
-      ),
-      labelStyle: TextStyle(
-        color: textColor,
-        fontSize: 14,
-      ),
-      errorStyle: const TextStyle(
-        color: AppColors.errorRed,
-        fontSize: 12,
       ),
     );
   }

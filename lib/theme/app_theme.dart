@@ -136,7 +136,6 @@ class AppTheme {
         brightness: Brightness.dark,
       ),
       dividerColor: AppColors.darkGrey,
-      errorColor: AppColors.errorRed,
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.primaryDark,
       ),
